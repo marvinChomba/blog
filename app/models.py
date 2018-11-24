@@ -1,5 +1,6 @@
 from . import db
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash,check_password_hash
 
 class User(db.Model):
     """
@@ -11,6 +12,7 @@ class User(db.Model):
     bio = db.Column(db.String)
     image = db.Column(db.String)
     posts = db.relationship("Post", backref = "user", lazy = "dynamic")
+    user_pass = db.Column(db.String)
 
     def get_user_posts(self):
         posts = Post.query.filter_by(user_id = self.id)
@@ -19,6 +21,26 @@ class User(db.Model):
     def save_user(self):
         db.session.add(self)
         db.session.commit()
+        
+    @property
+    def password(self):
+        raise AttributeError("Gerrarahia")
+
+    @password.setter
+    def password(self,password):
+        self.user_pass = generate_password_hash(password)
+
+    def verify_pass(self,password):
+        return check_password_hash(self.user_pass, password)
+    
+    def get_user_post_count(self):
+        posts = Post.query.filter_by(user_id = self.id)
+        sum = 0
+        for post in posts:
+            sum += 1
+        return sum
+
+    
 
 class Post(db.Model):
     __tablename__ = "posts"
@@ -28,13 +50,14 @@ class Post(db.Model):
     content = db.Column(db.String)
     time = db.Column(db.String)
     comments = db.relationship("Comment",backref = "post", lazy = "dynamic")
-
     def get_post_comments(self):
         return Comment.query.filter_by(post_id = self.id)
 
-    def save_pitch(self):
+    def save_post(self):
         db.session.add(self)
         db.session.commit()
+    
+
 
 class Comment(db.Model):
     __tablename__ = "comments"

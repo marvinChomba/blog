@@ -25,7 +25,7 @@ class TestConfig(Config):
     """
     This is the class which will contain the test configurations
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/blog_tests'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/tests'
 
 config_options = {
     "development": DevConfig,
