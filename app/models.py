@@ -1,14 +1,21 @@
 from . import db
 from flask_login import UserMixin
+from app import login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+    
+class User(UserMixin,db.Model):
     """
     Class I will use to create users
     """
     __tablename__ = "users"
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String)
+    full_name = db.Column(db.String)
+    username = db.Column(db.String)
+    email = db.Column(db.String)
     bio = db.Column(db.String)
     image = db.Column(db.String)
     posts = db.relationship("Post", backref = "user", lazy = "dynamic")
