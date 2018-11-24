@@ -28,6 +28,11 @@ def login():
         user = User.query.filter_by(email = email).first()
         if user is not None and user.verify_pass(form.password.data):
             login_user(user,form.remember.data)
-            return render_template("logged.html")
+            return redirect(url_for('main.index'))
     title = "Login"
     return render_template("auth/login.html", form = form)
+
+@auth.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))

@@ -6,7 +6,7 @@ from flask import redirect,url_for,render_template
 @main.route("/")
 def index():
 
-    return "Hey"
+    return render_template("index.html")
 
 @main.route("/add/post/",methods = ["GET","POST"])
 @login_required

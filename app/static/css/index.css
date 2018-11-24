@@ -1,0 +1,8 @@
+.landing {
+    background-image: url("../images/landing.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 100%
+}

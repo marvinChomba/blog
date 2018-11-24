@@ -1,0 +1,22 @@
+<nav class="nav-wrapper blue darken-1">
+    <div class="container">
+        <a href="" class="brand-logo hide-on-med-and-down">Blog</a>
+        <ul class="right" >
+            <li><a href="{{url_for('main.index')}}">Home</a></li>
+            {% if current_user.is_authenticated%}
+            <li><a href="{{url_for('main.add_post')}}">Add Pitch</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+            {% else %}
+            <li><a href="{{url_for('auth.login')}}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+</nav>
+
+
+
+<script>
+    $(".sidenav").sidenav()
+</script>
