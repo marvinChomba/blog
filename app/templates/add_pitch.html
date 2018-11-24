@@ -1,3 +1,14 @@
 {% extends 'base.html' %}
 
-{%%}
+{% block content%}
+    <div class="container">
+        <form method="post">
+            {{form.hidden_tag()}}
+            {{form.title.label}}
+            {{form.title}}
+            {{form.content.label}}
+            {{form.content}}
+            {{form.submit(class = "btn blue darken-1")}}
+        </form>
+    </div>
+{% endblock%}

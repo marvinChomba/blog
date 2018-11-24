@@ -8,7 +8,7 @@ def index():
 
     return "Hey"
 
-@main.route("/add/post/")
+@main.route("/add/post/",methods = ["GET","POST"])
 @login_required
 def add_post():
     form = AddPostForm()
@@ -16,7 +16,7 @@ def add_post():
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
-        new_post = Post(title = title, content = content. user = current_user)
+        new_post = Post(title = title, content = content, user = current_user)
         new_post.save_post()
         return redirect(url_for('main.index'))
 
