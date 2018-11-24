@@ -5,8 +5,8 @@ from ..models import Post,User,Comment
 from flask import redirect,url_for,render_template
 @main.route("/")
 def index():
-
-    return render_template("index.html")
+    posts = Post.query.all()
+    return render_template("index.html",posts = posts)
 
 @main.route("/add/post/",methods = ["GET","POST"])
 @login_required

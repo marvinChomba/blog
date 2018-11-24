@@ -4,4 +4,24 @@
     <div class="landing">
 
     </div>
+    <div class=" main">
+        <h2 class="title">Blog Posts</h2>
+        {% for row in posts | batch(2)%}
+            <div class="post-row row">
+                {% for blog in row %}
+                    <div class="post col s12 m5">
+                        <div class="row">
+                            <div class="col s4">
+                                <img class="card-img" src="../static/images/landing.jpeg" alt="" height= "150px", width="150px">
+                            </div>
+                            <div class="col s8">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio impedit id error laborum. Maiores nihil architecto ducimus illum sunt molestias.</p>
+                                <a href="#" class="btn blue darken-1">Read Article</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor%}
+    </div>
 {% endblock %}
