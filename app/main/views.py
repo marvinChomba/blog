@@ -2,8 +2,8 @@ from . import main
 from flask_login import current_user, login_required
 from .forms import AddPostForm,SubscribeForm,AddComment
 from ..models import Post,User,Comment,Subscriber
-from flask import redirect,url_for,render_template,flash
-from .. import db
+from flask import redirect,url_for,render_template,flash,request
+from .. import db,photos
 
 @main.route("/", methods = ["GET","POST"])
 def index():
@@ -26,7 +26,11 @@ def add_post():
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
-        new_post = Post(title = title, content = content, user = current_user)
+        if "photo" in request.files:
+            pic = photos.save(request.files["photo"])
+            file_path = f"photos/{pic}"
+            image = file_path
+        new_post = Post(title = title, content = content, user = current_user,image = image)
         new_post.save_post()
         return redirect(url_for('main.index'))
 

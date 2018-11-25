@@ -3,5 +3,6 @@
 {% block content%}
     <div class="container">
         {{wtf.quick_form(form)}}
+        <p>Don't have an account? <a href="{{url_for('auth.register')}}">Sign Up</a></p>
     </div>
 {% endblock %}

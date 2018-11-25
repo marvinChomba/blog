@@ -7,12 +7,13 @@ class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY")
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    UPLOADED_PHOTOS_DEST = "app/static/photos"
 
 class DevConfig(Config):
     """
     This is the class which will contain the development configurations
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/blog2'
     DEBUG = True
 
 class ProdConfig(Config):

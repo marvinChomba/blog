@@ -54,6 +54,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     content = db.Column(db.String)
     time = db.Column(db.String)
+    image = db.Column(db.String)
     comments = db.relationship("Comment",backref = "post", lazy = "dynamic")
     def get_post_comments(self):
         return Comment.query.filter_by(post_id = self.id)

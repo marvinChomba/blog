@@ -12,7 +12,8 @@
                     {% for post in posts %}
                     <div class="post-card mb-5 text-center">
                         <div class="img-container">
-                            <img class="text-center img-responsive" src="../static/images/landing.jpeg" alt="" height="600px" width="750px">
+                        <img class="text-center img-responsive" src="{{url_for('static', filename=post.image)}}" alt="" height="600px"
+                            width="750px">
                         </div>
                         <h2>{{post.title}}</h2>
                         <h5><em>| By {{post.user.full_name}} | </em></h5>
