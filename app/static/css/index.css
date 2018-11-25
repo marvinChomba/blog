@@ -30,6 +30,9 @@ body {
     align-items: center;
     flex-flow: column;
 }
+.navbar {
+    margin-bottom: 0;
+}
 .post-card {
     margin-bottom: 8%;
     display: flex;
