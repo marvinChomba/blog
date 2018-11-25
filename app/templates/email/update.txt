@@ -1,5 +1,5 @@
-Hey {{user.full_name}}
-There is a new blog post by {{}}
+Hey,
+There is a new blog post by {{user.full_name}}
 Please log in to check it out
 
 Cheers,

@@ -5,6 +5,7 @@ from ..models import Post,User,Comment,Subscriber
 from flask import redirect,url_for,render_template,flash,request
 from .. import db,photos
 from datetime import datetime
+from app.email import create_mail
 
 @main.route("/", methods = ["GET","POST"])
 def index():
@@ -25,6 +26,8 @@ def index():
 def add_post():
     form = AddPostForm()
     title = "Add Post"
+
+
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
@@ -36,6 +39,13 @@ def add_post():
             image = file_path
         new_post = Post(title = title, content = content, user = current_user,image = image,time = posted)
         new_post.save_post()
+        subscribers = Subscriber.query.all()
+        emails = []
+        for subscriber in subscribers:
+            emails.append(subscriber.email)
+        for email in emails:
+            create_mail("Update!","email/update",email, user = current_user)
+        print(emails)
         return redirect(url_for('main.index'))
 
     return render_template("add_pitch.html",form = form,title = title)
