@@ -32,3 +32,9 @@ def add_post():
 
     return render_template("add_pitch.html",form = form)
 
+@main.route("/post/<int:id>")
+def post_page(id):
+    post = Post.query.filter_by(id = id).first()
+    title = post.title
+    return render_template("post.html", title = title, post = post)
+

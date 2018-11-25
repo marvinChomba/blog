@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block styles%}
+    {{super()}}
+    <link rel="stylesheet" href="../static/css/comment.css">
+{%endblock %}
+{% block content%}
+    <div class="post-card mb-5 text-center">
+        <div class="img-container">
+            <img class="text-center img-responsive" src="../static/images/landing.jpeg" alt="" height="600px" width="750px">
+        </div>
+        <h2>{{post.title}}</h2>
+        <h5><em>| By {{post.user.full_name}} | </em></h5>
+        <div class="content">
+            <p>{{post.content}}</p>
+        </div>
+        <div class="comment-card">
+            
+        </div>
+    </div>
+{% endblock%}
