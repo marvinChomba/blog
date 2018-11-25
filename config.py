@@ -13,7 +13,7 @@ class DevConfig(Config):
     """
     This is the class which will contain the development configurations
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/blog2'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://marvin:marvin24@localhost/blog'
     DEBUG = True
 
 class ProdConfig(Config):
