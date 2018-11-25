@@ -2,21 +2,30 @@
 {% import "bootstrap/wtf.html" as wtf%}
 {% block styles%}
     {{super()}}
-    <link rel="stylesheet" href="../static/css/comment.css">
+    <link rel="stylesheet" href="../static/css/post.css">
 {%endblock %}
 {% block content%}
-    <div class="post-card mb-5 text-center">
-        <div class="img-container">
-            <img class="text-center img-responsive" src="../static/images/landing.jpeg" alt="" height="600px" width="750px">
+<h1 class="text-center">{{post.title}}</h1>
+<div class="row post-row">
+    <div class="col-sm-7">
+        <div class="post-card text-center">
+            <div class="img-container">
+                <img class="text-center img-responsive" src="../static/images/landing.jpeg" alt="" height="600px" width="750px">
+            </div>
+            <h2>{{post.title}}</h2>
+            <h5><em>| By {{post.user.full_name}} | </em></h5>
+            <div class="content">
+                <p>{{post.content}}</p>
+            </div>
         </div>
-        <h2>{{post.title}}</h2>
-        <h5><em>| By {{post.user.full_name}} | </em></h5>
-        <div class="content">
-            <p>{{post.content}}</p>
+        <div class="comment-card">
+            <h3>Leave a Comment</h3>
+            {{wtf.quick_form(form)}}
         </div>
     </div>
-    <div class="comment-card">
-        <h3>Leave a Comment</h3>
-        {{wtf.quick_form(form)}}
+    <div class="col-sm-3 comments-card">
+        {% for comment in comments%}
+        <p><strong>{{comment.name}}</strong>: {{comment.content}}</p>
+        {% endfor%}
     </div>
 {% endblock%}
