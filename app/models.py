@@ -21,10 +21,6 @@ class User(UserMixin,db.Model):
     posts = db.relationship("Post", backref = "user", lazy = "dynamic")
     user_pass = db.Column(db.String)
 
-    def get_user_posts(self):
-        posts = Post.query.filter_by(user_id = self.id)
-        return posts
-    
     def save_user(self):
         db.session.add(self)
         db.session.commit()
@@ -40,12 +36,7 @@ class User(UserMixin,db.Model):
     def verify_pass(self,password):
         return check_password_hash(self.user_pass, password)
     
-    def get_user_post_count(self):
-        posts = Post.query.filter_by(user_id = self.id)
-        sum = 0
-        for post in posts:
-            sum += 1
-        return sum
+    
 
 class Post(db.Model):
     __tablename__ = "posts"

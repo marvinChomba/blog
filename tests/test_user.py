@@ -10,7 +10,7 @@ class TestUSer(unittest.TestCase):
         """
         This will create a new user before each test
         """
-        self.new_user = User(name = "Marvin",bio = "haha",password ="marvin")
+        self.new_user = User(username = "Marvin",bio = "haha",password ="marvin")
 
     def tearDown(self):
         """
@@ -29,7 +29,7 @@ class TestUSer(unittest.TestCase):
         """
         This will test whether the user is instantiated correctly
         """
-        self.assertTrue(self.new_user.name == "Marvin")
+        self.assertTrue(self.new_user.username == "Marvin")
         self.assertTrue(self.new_user.bio == "haha")
 
     def test_pass_generate(self):
