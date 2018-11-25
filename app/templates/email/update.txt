@@ -1,0 +1,6 @@
+Hey {{user.full_name}}
+There is a new blog post by {{}}
+Please log in to check it out
+
+Cheers,
+Blogger Team
