@@ -15,3 +15,7 @@ class AddComment(FlaskForm):
     name = StringField("Name", validators = [Required()])
     comment = TextAreaField("Comment", validators = [Required()])
     submit = SubmitField("Comment")
+    
+class EditBio(FlaskForm):
+    bio = StringField("Bio")
+    submit = SubmitField("Update")
