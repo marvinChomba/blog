@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% import "bootstrap/wtf.html" as wtf%}
 {% block styles%}
     {{super()}}
     <link rel="stylesheet" href="../static/css/comment.css">
@@ -14,8 +14,9 @@
         <div class="content">
             <p>{{post.content}}</p>
         </div>
-        <div class="comment-card">
-            
-        </div>
+    </div>
+    <div class="comment-card">
+        <h3>Leave a Comment</h3>
+        {{wtf.quick_form(form)}}
     </div>
 {% endblock%}

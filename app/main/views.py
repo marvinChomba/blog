@@ -1,6 +1,6 @@
 from . import main
 from flask_login import current_user, login_required
-from .forms import AddPostForm,SubscribeForm
+from .forms import AddPostForm,SubscribeForm,AddComment
 from ..models import Post,User,Comment,Subscriber
 from flask import redirect,url_for,render_template,flash
 from .. import db
@@ -36,5 +36,6 @@ def add_post():
 def post_page(id):
     post = Post.query.filter_by(id = id).first()
     title = post.title
-    return render_template("post.html", title = title, post = post)
+    form = AddComment()
+    return render_template("post.html", title = title, post = post,form = form)
 

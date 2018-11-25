@@ -47,7 +47,16 @@ body {
     width: 57%;
     text-align: center;
 }
-
+.comment-card {
+    margin-bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    background: white;
+    padding: 25px;
+    width: 57%;
+    text-align: center;
+}
 .img-container {
     margin: 0 auto;
 }
