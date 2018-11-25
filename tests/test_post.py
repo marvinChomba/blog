@@ -32,10 +32,16 @@ class TestPost(unittest.TestCase):
         self.assertTrue(self.new_post.title == "Haha")
 
     def test_save_user(self):
+        """
+        THis will test whether the pitch is added to the db
+        """
         self.new_post.save_post()
         self.assertTrue(len(Post.query.all()) > 0)
 
     def test_user_relation(self):
+        """
+        This will test whether the post is correctly linked to the user
+        """
         new_user = User(username = "Marvin")
         test_post = Post(title = "J", user = new_user)
         self.assertTrue(test_post.user.username == "Marvin")

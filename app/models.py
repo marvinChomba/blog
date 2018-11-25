@@ -36,7 +36,7 @@ class User(UserMixin,db.Model):
     def verify_pass(self,password):
         return check_password_hash(self.user_pass, password)
     
-    
+
 
 class Post(db.Model):
     __tablename__ = "posts"
@@ -71,3 +71,7 @@ class Subscriber(db.Model):
     __tablename__ = "subscribers"
     id = db.Column(db.Integer, primary_key = True)
     email = db.Column(db.String)
+
+    def save_subscriber(self):
+        db.session.add(self)
+        db.session.commit()
