@@ -17,13 +17,14 @@ def index():
         flash("Thank You for subscribing!")
         return redirect(url_for("main.index"))
     posts = Post.query.order_by(Post.time.desc())
-    return render_template("index.html",posts = posts,form = form)
+    title = "Home"
+    return render_template("index.html",posts = posts,form = form,title = title)
 
 @main.route("/add/post/",methods = ["GET","POST"])
 @login_required
 def add_post():
     form = AddPostForm()
-
+    title = "Add Post"
     if form.validate_on_submit():
         title = form.title.data
         content = form.content.data
@@ -37,7 +38,7 @@ def add_post():
         new_post.save_post()
         return redirect(url_for('main.index'))
 
-    return render_template("add_pitch.html",form = form)
+    return render_template("add_pitch.html",form = form,title = title)
 
 @main.route("/post/<int:id>",methods = ["GET","POST"])
 def post_page(id):
@@ -51,15 +52,17 @@ def post_page(id):
         new_comment.save_comment()
         return redirect(url_for('main.post_page', id = post.id))
     comments = Comment.query.filter_by(post_id = post.id)
+    title = post.title
     return render_template("post.html", title = title, post = post,form = form,comments = comments)
 
 @main.route("/delete/<id>")
 def delete(id):
     post = Post.query.filter_by(id = id).first()
+    user_id = post.user_id
     db.session.delete(post)
     db.session.commit()
 
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.profile', id = user_id))
 @main.route("/delete/comment/<id>")
 def delete_comment(id):
     comment = Comment.query.filter_by(id = id).first()
@@ -72,7 +75,8 @@ def delete_comment(id):
 def profile(id):
     user = User.query.filter_by(id = id).first()
     posts = Post.query.filter_by(user_id = user.id)
-    return render_template("profile.html", user = user,posts = posts)
+    title = user.full_name
+    return render_template("profile.html", user = user,posts = posts, title = title)
 
 @main.route("/<user_id>/profile/edit",methods = ["GET","POST"])
 @login_required
