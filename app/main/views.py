@@ -53,3 +53,10 @@ def post_page(id):
     comments = Comment.query.filter_by(post_id = post.id)
     return render_template("post.html", title = title, post = post,form = form,comments = comments)
 
+@main.route("/delete/<id>")
+def delete(id):
+    post = Post.query.filter_by(id = id).first()
+    db.session.delete(post)
+    db.session.commit()
+
+    return redirect(url_for('main.index'))
