@@ -63,8 +63,6 @@ class Post(db.Model):
     def save_post(self):
         db.session.add(self)
         db.session.commit()
-    
-
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -78,3 +76,8 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+class Subscriber(db.Model):
+    __tablename__ = "subscribers"
+    id = db.Column(db.Integer, primary_key = True)
+    email = db.Column(db.String)

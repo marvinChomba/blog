@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content%}
     <div class="container">
-        <form method="post">
-            {{form.hidden_tag()}}
-            {{form.title.label}}
-            {{form.title}}
-            {{form.content.label}}
-            {{form.content}}
-            {{form.submit(class = "btn blue darken-1")}}
-        </form>
+       {{wtf.quick_form(form)}}
     </div>
 {% endblock%}

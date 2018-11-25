@@ -1,22 +1,24 @@
-<nav class="nav-wrapper blue darken-1">
+<div style="border-radius: 0;z-index:1;" class="navbar navbar-inverse" role="navigation">
     <div class="container">
-        <a href="" class="brand-logo hide-on-med-and-down">Blog</a>
-        <ul class="right" >
-            <li><a href="{{url_for('main.index')}}">Home</a></li>
-            {% if current_user.is_authenticated%}
-            <li><a href="{{url_for('main.add_post')}}">Add Pitch</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
-            {% else %}
-            <li><a href="{{url_for('auth.login')}}">Login</a></li>
-            {% endif %}
-        </ul>
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">BLOG</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated%}
+                <li><a href="{{url_for('main.add_post')}}">Add Post</a></li>
+                <li><a href="#">{{current_user.name}}</a></li>
+                <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-
-</nav>
-
-
-
-<script>
-    $(".sidenav").sidenav()
-</script>
+</div>

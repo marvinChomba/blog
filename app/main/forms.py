@@ -6,3 +6,7 @@ class AddPostForm(FlaskForm):
     title = StringField("Title", validators = [Required()])
     content = TextAreaField("Post", validators = [Required()])
     submit = SubmitField("Add Post")
+
+class SubscribeForm(FlaskForm):
+    email = StringField("Enter email", validators = [Required()])
+    submit = SubmitField("Subscribe")
